@@ -1,0 +1,13 @@
+---
+apiVersion: secrets.hashicorp.com/v1alpha1
+kind: VaultDynamicSecret
+metadata:
+  name: mysql-dynamic-secret
+  namespace: default
+spec:
+  vaultAuthRef: app-vault-auth
+  role : workshop-role
+  mount: database
+  destination:
+    create: true
+    name: mysql-secret-from-vso
