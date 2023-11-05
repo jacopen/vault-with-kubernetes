@@ -1,0 +1,12 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: jwt-vault-auth
+  namespace: vault-book
+spec:
+  vaultConnectionRef: jwt-vault-connection
+  method: jwt
+  mount: jwt
+  jwt:
+    role: vault-jwt-app
+    serviceAccount: app

@@ -1,0 +1,65 @@
+defaultRules:
+  create: false
+global:
+  rbac:
+    create: true
+alertmanager:
+  enabled: false
+grafana:
+  enabled: false
+kubeApiServer:
+  enabled: false
+kubelet:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+coreDns:
+  enabled: false
+kubeDns:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+kube-state-metrics:
+  namespaceOverride: ""
+  rbac:
+    create: false
+  releaseLabel: false
+  prometheus:
+    monitor:
+      enabled: false
+  selfMonitor:
+    enabled: false
+nodeExporter:
+  enabled: false
+prometheusOperator:
+  enabled: true
+## Deploy a Prometheus instance
+##
+prometheus:
+  enabled: true
+  service:
+    annotations: {}
+    labels: {}
+    clusterIP: ""
+    port: 9090
+    targetPort: 9090
+    externalIPs: []
+    loadBalancerIP: ""
+    loadBalancerSourceRanges: []
+    type: ClusterIP
+    sessionAffinity: ""
+  servicePerReplica:
+    enabled: false
+    annotations: {}
+    port: 9090
+    targetPort: 9090
+    loadBalancerSourceRanges: []
+    type: ClusterIP
+  prometheusSpec:
+    retention: 1d

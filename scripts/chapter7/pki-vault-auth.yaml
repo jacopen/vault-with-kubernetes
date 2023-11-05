@@ -1,0 +1,12 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: pki-vault-auth
+  namespace: default
+spec:
+  vaultConnectionRef: pki-vault-connection
+  method: kubernetes
+  mount: kubernetes
+  kubernetes:
+    role: issuer-vso
+    serviceAccount: issuer-vso

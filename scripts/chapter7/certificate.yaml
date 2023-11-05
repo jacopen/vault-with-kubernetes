@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vault-book-com
+  namespace: default
+spec:
+  secretName: vault-book-com-tls         # このリソースによって作成される証明書の情報を持つSecretリソース名
+  issuerRef:
+    name: vault-issuer                   # 紐付けるIssuerの名前
+  commonName: example.vault-book.com     # Subject Common Name
+  dnsNames:
+  - example.vault-book.com
