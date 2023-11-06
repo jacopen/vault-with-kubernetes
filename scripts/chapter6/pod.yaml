@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: app-vault-agent-env
+  name: app-vault-agent-dynamic
   labels:
-    app: app-vault-agent-env
+    app: app-vault-agent-dynamic
   annotations:
     vault.hashicorp.com/agent-inject: 'true'
     vault.hashicorp.com/role: 'app'
@@ -17,6 +17,5 @@ spec:
   containers:
   - name: app
     image: ubuntu:22.04
-    # Vault Agentが生成したファイルに記載された値をsourceコマンドで環境変数に設定し、その値をechoで出力
     command: ["/bin/bash", "-c", "source /vault/secrets/app-config.txt && echo $username && echo $password && /bin/sh -c 'while :; do sleep 10; done'"]
   serviceAccountName: app

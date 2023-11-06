@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: vault-servicemonitor
+  namespace: vault
+  labels:
+    release: prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      telemetry: :true"
+  endpoints:
+    - interval: 30s
+      path: /v1/sys/metrics
+      params:
+        format: 
+          - prometheus
+      port: http
+      tlsConfig:
+        insecureSkipVerify: true
+      bearerTokenSecret:
+        name: vault-monitor-token
+        key: token

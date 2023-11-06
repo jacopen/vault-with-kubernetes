@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: vault-issuer
+  namespace: default
+spec:
+  vault:
+    server: http://vault.vault.svc.cluster.local:8200   # 証明書を発行するvaultのURL
+    path: pki_k8s/sign/vault-book-com                   # <PKI Secret Engineを有効化したパス>/sign/<証明書作成のRole名>
+    auth:
+      kubernetes:
+        role: issuer                                    # Kubernetes Auth Methodに対するRole名
+        mountPath: /v1/auth/kubernetes
+        serviceAccountRef:
+          name: issuer                                  # Kubernetes Auth Methodに用いるService Account名

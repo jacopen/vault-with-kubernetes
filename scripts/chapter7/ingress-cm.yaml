@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  namespace: default
+  annotations:
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - example.vault-book.com
+    secretName: vault-book-com-tls
+  rules:
+  - host: example.vault-book.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web
+            port:
+              number: 8080
