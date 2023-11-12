@@ -52,7 +52,7 @@ prometheus:
     externalIPs: []
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
-    type: ClusterIP
+    type: LoadBalancer
     sessionAffinity: ""
   servicePerReplica:
     enabled: false
